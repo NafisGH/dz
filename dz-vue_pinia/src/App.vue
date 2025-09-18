@@ -1,5 +1,9 @@
-<script setup></script>
+<script setup>
+const correctDate = new Date();
+</script>
 
-<template></template>
+<template>
+  <h2>{{ correctDate }}</h2>
+</template>
 
 <style scoped></style>
