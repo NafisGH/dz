@@ -5,12 +5,22 @@ function handleCardClick() {
   emit("rotate");
   emit("changeStatus");
 }
+
+const props = defineProps({
+  word: String,
+  translation: String,
+  state: String,
+  status: String,
+  number: Number,
+});
+const { word, translation, state, status, number } = props;
 </script>
 <template>
   <div class="card" @click="handleCardClick">
     <div class="card__ramka">
-      <h3 class="card__text">unadmitted</h3>
+      <h3 class="card__text">{{ word }}</h3>
       <h4 class="card__text-rotate">ПЕРЕВЕРНУТЬ</h4>
+      <span class="card__number">{{ number }}</span>
     </div>
   </div>
 </template>
@@ -38,6 +48,13 @@ function handleCardClick() {
   position: relative;
 }
 .card__text {
+}
+.card__number {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: #fff;
+  padding: 0px 5px;
 }
 .card__text-rotate {
   position: absolute;

@@ -3,8 +3,16 @@ import Button from "../components/Button.vue";
 import { ref } from "vue";
 import Score from "../components/Score.vue";
 import Card from "../components/Card.vue";
-// Домашняя страница — простая заглушка
+
 let countRef = ref(100);
+
+const card = ref({
+  word: "car",
+  translation: "автомобиль",
+  state: "closed" | "open",
+  status: "success" | "fail" | "pending",
+  number: 1,
+});
 
 function handleRotate() {
   console.log("Emit rotate");
@@ -22,7 +30,11 @@ function handleChangeStatus() {
   <section class="main">
     <Button>Кнопка</Button>
   </section>
-  <Card @rotate="handleRotate" @changeStatus="handleChangeStatus" />
+  <Card
+    @rotate="handleRotate"
+    @changeStatus="handleChangeStatus"
+    v-bind="card"
+  />
 </template>
 
 <style scoped>
