@@ -1,9 +1,20 @@
 <script setup>
-const correctDate = new Date();
+import { ref } from "vue";
+// import Button from "./components/Button.vue";
+import Scoped from "./components/Score.vue";
 </script>
 
 <template>
-  <h2>{{ correctDate }}</h2>
+  <nav>
+    <RouterLink to="/">Главная</RouterLink>
+    <RouterLink to="/cards">Карточки</RouterLink>
+    <RouterLink to="/sandbox">Песочница</RouterLink>
+  </nav>
+
+  <main>
+    <RouterView />
+  </main>
+  <footer></footer>
 </template>
 
 <style scoped></style>
