@@ -18,7 +18,7 @@
   padding: 16px 10px;
   font-family: var(--font);
   font-size: 20px;
-  color: var(--primary);
+  color: var(--color-primary);
   cursor: pointer;
 }
 </style>
