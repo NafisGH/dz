@@ -1,4 +1,6 @@
 <script setup>
+import No from "../utils/No.vue";
+import Yes from "../utils/Yes.vue";
 const emit = defineEmits(["rotate", "changeStatus"]);
 
 function handleCardClick() {
@@ -16,10 +18,39 @@ const props = defineProps({
 const { word, translation, state, status, number } = props;
 </script>
 <template>
-  <div class="card" @click="handleCardClick">
+  <div v-if="state === 'closed'" class="card" @click="handleCardClick">
     <div class="card__ramka">
       <h3 class="card__text">{{ word }}</h3>
       <h4 class="card__text-rotate">ПЕРЕВЕРНУТЬ</h4>
+      <span class="card__number">{{ number }}</span>
+    </div>
+  </div>
+
+  <div v-else-if="state === 'open' && status === 'pending'" class="card">
+    <div class="card__ramka">
+      <h3 class="card__text">{{ translation }}</h3>
+      <h4 class="card__rotate-back">
+        <No class="no" />
+        <Yes class="yes" />
+      </h4>
+      <span class="card__number">{{ number }}</span>
+    </div>
+  </div>
+
+  <div v-else-if="status === 'correct'" class="card">
+    <div class="card__ramka">
+      <h3 class="card__text">{{ translation }}</h3>
+      <h4></h4>
+      <Yes class="icon-correct" />
+      <span class="card__number">{{ number }}</span>
+    </div>
+  </div>
+
+  <div v-else-if="status === 'incorrect'" class="card">
+    <div class="card__ramka">
+      <h3 class="card__text">{{ translation }}</h3>
+      <h4></h4>
+      <No class="icon-incorrect" />
       <span class="card__number">{{ number }}</span>
     </div>
   </div>
@@ -47,12 +78,20 @@ const { word, translation, state, status, number } = props;
   align-items: center;
   position: relative;
 }
-.card__text {
-}
+
 .card__number {
   position: absolute;
   top: -10px;
   left: 20px;
+  background: #fff;
+  padding: 0px 5px;
+}
+
+.icon-incorrect,
+.icon-correct {
+  position: absolute;
+  top: -12px;
+  left: 45%;
   background: #fff;
   padding: 0px 5px;
 }
@@ -61,5 +100,14 @@ const { word, translation, state, status, number } = props;
   bottom: -30px;
   background: #fff;
   padding: 0px 5px;
+}
+.card__rotate-back {
+  position: absolute;
+  bottom: -35px;
+  background: #fff;
+  padding: 0px 5px;
+}
+.no {
+  margin-right: 30px;
 }
 </style>
