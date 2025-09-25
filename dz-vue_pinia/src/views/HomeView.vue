@@ -6,13 +6,36 @@ import Card from "../components/Card.vue";
 
 let countRef = ref(100);
 
-const card = ref({
-  word: "car",
-  translation: "автомобиль",
-  state: "closed" | "open",
-  status: "success" | "fail" | "pending",
-  number: 1,
-});
+const cards = ref([
+  {
+    word: "car",
+    translation: "автомобиль",
+    state: "closed",
+    status: "pending",
+    number: 1,
+  },
+  {
+    word: "house",
+    translation: "дом",
+    state: "open",
+    status: "pending",
+    number: 2,
+  },
+  {
+    word: "dog",
+    translation: "собака",
+    state: "open",
+    status: "correct",
+    number: 3,
+  },
+  {
+    word: "cat",
+    translation: "кот",
+    state: "open",
+    status: "incorrect",
+    number: 4,
+  },
+]);
 
 function handleRotate() {
   console.log("Emit rotate");
@@ -31,10 +54,13 @@ function handleChangeStatus() {
     <Button>Кнопка</Button>
   </section>
   <Card
+    v-for="card in cards"
+    :key="card.number"
+    v-bind="card"
     @rotate="handleRotate"
     @changeStatus="handleChangeStatus"
-    v-bind="card"
   />
+  <!-- <Card /> -->
 </template>
 
 <style scoped>

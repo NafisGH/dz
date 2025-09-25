@@ -59,8 +59,7 @@ import Yes from "../utils/Yes.vue";
   align-items: center;
   position: relative;
 }
-.card__text {
-}
+
 .card__text-rotate {
   position: absolute;
   bottom: -30px;
